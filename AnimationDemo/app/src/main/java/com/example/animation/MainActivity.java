@@ -2,6 +2,7 @@ package com.example.animation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     Button alphaButton;
+//    Button timerButton;
     TextView hello;
     TextView percentText;
     ImageView imageView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         alphaButton=findViewById(R.id.alpha_button);
+//        timerButton=findViewById(R.id.timer);
         hello=findViewById(R.id.hello);
         imageView=findViewById(R.id.imageView);
         percentText=findViewById(R.id.percent);
@@ -38,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
         changeImage(100);//
 
         heartBeat(1000);
+    }
+
+    public void Jump(View view)//点击跳转页面
+    {
+       Intent intent =new Intent();
+       intent.setClass(MainActivity.this,TimerActivity.class);
+       startActivity(intent);
     }
 
     public void startAnimationSet(View view)
@@ -190,4 +200,6 @@ public class MainActivity extends AppCompatActivity {
         animation.setRepeatCount(3);
         alphaButton.startAnimation(animation);
     }
+
+
 }
