@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Main3Activity">
+
+<!--    <Button-->
+<!--        android:id="@+id/is_support_bluetooth"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="isSupportBlueTooth"-->
+<!--        android:text="@string/support_bluetooth" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/is_bluetooth_enable"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="isBlueToothEnable"-->
+<!--        android:text="@string/is_bluetooth_enable" />-->
+
+    <Button
+        android:id="@+id/turn_on_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="requestTurnOnBlueTooth"
+        android:text="@string/turn_on_bluetooth" />
+
+    <Button
+        android:id="@+id/turn_off_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="turnOffBlueTooth"
+        android:text="@string/turn_off_bluetooth" />
+
+    <Button
+        android:id="@+id/turn_on_visibility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="enableVisibly"
+        android:text="@string/turn_on_visibility" />
+
+    <Button
+        android:id="@+id/discover_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="discoverDevice"
+        android:text="@string/discover_device" />
+
+    <TextView
+        android:id="@+id/LogText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logText" />
+
+    <Button
+        android:id="@+id/bonded_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getDeviceList"
+        android:text="@string/bonded_device" />
+
+    <Button
+        android:id="@+id/start_listening"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="startListening"
+        android:text="@string/start_listening" />
+
+    <Button
+        android:id="@+id/stop_listening"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="stopListening"
+        android:text="@string/stop_listening" />
+    <Button
+        android:id="@+id/disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="disconnect"
+        android:text="@string/disconnect" />
+    <Button
+        android:id="@+id/hello"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sayHello"
+        android:text="@string/hello" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/device_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

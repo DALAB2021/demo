@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="support_bluetooth">是否支持蓝牙</string>
+    <string name="is_bluetooth_enable">是否已经打开蓝牙</string>
+    <string name="turn_on_bluetooth">打开蓝牙</string>
+    <string name="turn_off_bluetooth">关闭蓝牙</string>
+    <string name="turn_on_visibility">打开可见</string>
+    <string name="discover_device">查找设备</string>
+    <string name="bonded_device">已绑定设备</string>
+    <string name="logText">Log</string>
+    <string name="start_listening">开始监听</string>
+    <string name="stop_listening">结束监听</string>
+    <string name="disconnect">断开连接</string>
+    <string name="hello">hello</string>
+</resources>
