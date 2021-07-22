@@ -13,16 +13,21 @@ import com.example.animation.SelfDefineViews.BrokenLineChart;
 import com.example.animation.SelfDefineViews.DrawLineChart;
 import com.example.animation.SelfDefineViews.MyView;
 
+import java.util.ArrayList;
 import java.util.Random;
+
 
 public class DrawActivity extends AppCompatActivity {
 
+    ArrayList<Float> Values=new ArrayList<Float>();
+    int sampleDistance=5;//采样的间距，在demo里面体现为每点击n次按钮才会显示一次
+    ArrayList<Float> storage=new ArrayList<Float>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw);
         init();
-
+        Values.add(0.0f);
     }
     private void init()
     {
@@ -47,17 +52,17 @@ public class DrawActivity extends AppCompatActivity {
 //        final BrokenLineChart brokenchart=new BrokenLineChart(DrawActivity.this);//final定义了之后就不能修改了...但是我想要动态修改？
 //        frameLayout.addView(brokenchart);
         DrawLineChart chart = findViewById(R.id.chart);
-        chart.setBrokenLineLTRB(30,10,10,5);
+        chart.setBrokenLineLTRB(50,15,10,5);
         chart.setRadius(2.5f);
         chart.setCircleWidth(1f);
-        chart.setBorderTextSize(50);//修改文字大小
-        chart.setBrokenLineTextSize(10);
+        chart.setBorderTextSize(15);//修改边框文字大小
+        chart.setBrokenLineTextSize(10);//修改这线上文字大小
         chart.setMaxVlaue(600);
         chart.setMinValue(0);
         chart.setNumberLine(5);//5根线
         chart.setBorderWidth(1f);
         chart.setBrokenLineWidth(1.5f);
-        chart.setBorderTransverseLineWidth(0.3f);
+        chart.setBorderTransverseLineWidth(1.0f);//中间横线的宽度
         chart.setUpper(600.0f);
         chart.setLower(200.0f);
 
@@ -74,13 +79,46 @@ public class DrawActivity extends AppCompatActivity {
     {
         DrawLineChart chart = findViewById(R.id.chart);
         Random random=new Random();
-        float[] floats=new float[30];//如果修改常长度？确实可以完全地显示出来
-        for (int i = 0; i < floats.length; i++) {
-            float f=  random.nextFloat();
-            floats[i]=f*600;
-            Log.i("onCreate", "onCreate: f"+f);
+        float f= random.nextFloat();
+        Values.add(f*600);
+        float[] floats=new float[Values.size()];
+        int index = 0;
+        for (final Float value: Values) {
+            floats[index++] = value;
         }
+//        float[] floats=new float[30];//如果修改常长度？确实可以完全地显示出来
+//        for (int i = 0; i < floats.length; i++) {
+//            float f=  random.nextFloat();
+//            floats[i]=f*600;
+//            Log.i("onCreate", "onCreate: f"+f);
+//        }
         chart.setValue(floats);
         chart.invalidate();//重绘
+    }
+    public void changeWithSample(View view)
+    {
+        DrawLineChart chart = findViewById(R.id.chart);
+        Random random=new Random();
+        float f= random.nextFloat();
+        float data=f*600;//这个是生成的data，之后当然是用传递过来的数据
+        storage.add(data);
+        if(storage.size()==sampleDistance)
+        {
+            float average=0;
+            for (final Float value: storage) {
+                average+=value;
+            }
+            average/=sampleDistance;
+            System.out.println("average："+average);
+            Values.add(average);
+            float[] floats=new float[Values.size()];
+            int index = 0;
+            for (final Float value: Values) {
+                floats[index++] = value;
+            }
+            chart.setValue(floats);
+            chart.invalidate();//重绘
+            storage.clear();
+        }
     }
 }

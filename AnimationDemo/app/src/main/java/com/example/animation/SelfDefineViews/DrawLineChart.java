@@ -240,6 +240,8 @@ public class DrawLineChart extends View {
         /**计算框线横线间隔的数据平均值*/
         averageValue = calculateValue/(numberLine-1);
 
+        initPaint();//什么时候需要init这个东西，才能够让我们的修改有作用...
+
     }
 
 
@@ -258,7 +260,9 @@ public class DrawLineChart extends View {
         }
         mTextPaint.setTextSize(mBorderTextSize);
         mTextPaint.setTextAlign(Paint.Align.RIGHT);
-        mTextPaint.setColor(Color.GRAY);
+//        mTextPaint.setColor(Color.GRAY);
+        mTextPaint.setColor(Color.BLACK);
+        mTextPaint.setStyle(Paint.Style.FILL);
         /**初始化边框线画笔*/
         if(mBorderLinePaint==null){
             mBorderLinePaint=new Paint();
@@ -294,6 +298,7 @@ public class DrawLineChart extends View {
         mBrokenLineTextPaint.setTextAlign(Paint.Align.CENTER);
         mBrokenLineTextPaint.setColor(mBrokenLineTextColor);
         mBrokenLineTextPaint.setTextSize(mBrokenLineTextSize);
+        mBrokenLineTextPaint.setStyle(Paint.Style.FILL);
 
         /**横线画笔*/
         if (mHorizontalLinePaint == null){
@@ -303,20 +308,29 @@ public class DrawLineChart extends View {
 
         mHorizontalLinePaint.setStrokeWidth(mBorderTransverseLineWidth);
         mHorizontalLinePaint.setColor(mBorderTransverseLineColor);
-
-        /**上下限*/
+//        mHorizontalLinePaint.setStyle(Paint.Style.FILL);
+        /*上下限*/
         if (upperPaint == null){
             upperPaint=new Paint();
             initPaint(upperPaint);
         }
         upperPaint.setStrokeWidth(mBorderTransverseLineWidth);
-        upperPaint.setColor();
+        upperPaint.setColor(Color.RED);
+//        upperPaint.setStyle(Paint.Style.FILL);
+        if (lowerPaint == null){
+            lowerPaint=new Paint();
+            initPaint(lowerPaint);
+        }
+        lowerPaint.setStrokeWidth(mBorderTransverseLineWidth);
+        lowerPaint.setColor(Color.rgb(255,160,0));
+//        lowerPaint.setStyle(Paint.Style.FILL);
     }
 
     /**初始化画笔默认属性*/
     private void initPaint(Paint paint){
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
+        //文字可以不用stroke
     }
 
     @Override
@@ -330,7 +344,8 @@ public class DrawLineChart extends View {
         DrawBrokenLine(canvas);
 
         /**绘制圆*/
-        DrawLineCircle(canvas);
+        //如果画曲线就不用绘制圆，因为如果太多的化会很密集，不好。
+//        DrawLineCircle(canvas);
 
         //绘制额外的bound上下限
         DrawBounds(canvas);
@@ -360,22 +375,56 @@ public class DrawLineChart extends View {
     /**根据值绘制折线*/
     private void DrawBrokenLine(Canvas canvas) {
         Path mPath=new Path();
-        for (int i = 0; i < mPoints.length; i++) {
-            Point point=mPoints[i];
-            if(i==0){
-                mPath.moveTo(point.x,point.y);
-            }else {
-                mPath.lineTo(point.x,point.y);
+        //画折线
+//        for (int i = 0; i < mPoints.length; i++) {
+//            Point point=mPoints[i];
+//            if(i==0){
+//                mPath.moveTo(point.x,point.y);
+//            }else {
+//                mPath.lineTo(point.x,point.y);
+//            }
+//            //其实折线文字可以不要,肯定不要，因为太密集了
+//            //canvas.drawText(value[i]+"",point.x,point.y-radius,mBrokenLineTextPaint);
+//        }
+        //其实也可以画曲线...
+        for(int j = 0; j < mPoints.length; j++) {
+            Point startp = mPoints[j];
+            Point endp;
+            if (j != mPoints.length - 1) {
+                endp = mPoints[j + 1];
+                int wt = (startp.x + endp.x) / 2;
+                Point p3 = new Point();
+                Point p4 = new Point();
+                p3.y = startp.y;
+                p3.x = wt;
+                p4.y = endp.y;
+                p4.x = wt;
+                if (j == 0) {
+                    mPath.moveTo(startp.x, startp.y);
+                }
+                /*
+                 *添加一个立方贝塞尔曲线的最后一点,接近控制点
+                 *(x1,y1)和(x2,y2),到最后(x3,y3)。如果没有移至()调用
+                 *为这个轮廓,第一点是自动设置为(0,0)。
+                 *
+                 * @param x1的坐标1立方曲线控制点
+                 * @param y1第一控制点的坐标一立方曲线
+                 * @param x2上第二个控制点的坐标一立方曲线
+                 * @param y2第二控制点的坐标一立方曲线
+                 * @param x3的坐标三次曲线的终点
+                 * @param y3终点坐标的三次曲线
+                 *
+                 */
+                mPath.cubicTo(p3.x, p3.y, p4.x, p4.y, endp.x, endp.y);
             }
-            //其实折线文字可以不要,肯定不要，因为太密集了
-            //canvas.drawText(value[i]+"",point.x,point.y-radius,mBrokenLineTextPaint);
+
         }
         canvas.drawPath(mPath,mBrokenLinePaint);
     }
 
     /**绘制边框线和边框文本*/
     private void DrawBorderLineAndText(Canvas canvas) {
-        /**对应的属性
+        /*对应的属性
          * drawLine(float startX, float startY, float stopX, float stopY, Paint paint);
          * startX   开始的x坐标
          * startY   开始的y坐标
@@ -418,7 +467,12 @@ public class DrawLineChart extends View {
     private void DrawBounds(Canvas canvas) {
         float averageHeight=mNeedDrawHeight/(numberLine-1);
         float upperHeight=(maxVlaue-upper)*averageHeight/averageValue;
-        canvas.drawLine(mBrokenLineLeft, upperHeight + mBrokenLineTop, mViewWidth, upperHeight + mBrokenLineTop, mHorizontalLinePaint);
+        canvas.drawLine(mBrokenLineLeft, upperHeight + mBrokenLineTop, mViewWidth, upperHeight + mBrokenLineTop, upperPaint);
+        canvas.drawText(floatKeepTwoDecimalPlaces(upper)+"",mBrokenLineLeft-dip2px(2),upperHeight+mBrokenLineTop,mTextPaint);
+
+        float lowerHeight=(maxVlaue-lower)*averageHeight/averageValue;
+        canvas.drawLine(mBrokenLineLeft, lowerHeight + mBrokenLineTop, mViewWidth, lowerHeight + mBrokenLineTop, lowerPaint);
+        canvas.drawText(floatKeepTwoDecimalPlaces(lower)+"",mBrokenLineLeft-dip2px(2),lowerHeight+mBrokenLineTop,mTextPaint);
 
     }
 
