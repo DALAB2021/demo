@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent =new Intent();
         intent.setClass(MainActivity.this,DrawActivity.class);
+        intent.putExtra("percent",percentText.getText().toString());
         startActivity(intent);
     }
 
