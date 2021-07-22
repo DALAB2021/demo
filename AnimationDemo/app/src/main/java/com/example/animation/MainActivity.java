@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(MainActivity.this,VisualizationActivity.class);
         startActivity(intent);
     }
+    public void Jump3(View view)//点击跳转页面
+    {
+        Intent intent =new Intent();
+        intent.setClass(MainActivity.this,DrawActivity.class);
+        startActivity(intent);
+    }
 
     public void startAnimationSet(View view)
     {

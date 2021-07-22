@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/body" />
 
     <ImageView
-        android:id="@+id/blood1"
+        android:id="@+id/blood_vein_upper_left"
         android:layout_width="27dp"
         android:layout_height="46dp"
         android:visibility="invisible"
@@ -32,9 +32,35 @@
         app:srcCompat="@drawable/blood1" />
 
     <ImageView
-        android:id="@+id/location1"
-        android:layout_width="56dp"
-        android:layout_height="485dp"
+        android:id="@+id/blood_cap_upper_left3"
+        android:layout_width="37dp"
+        android:layout_height="55dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/body"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintHorizontal_bias="0.618"
+        app:layout_constraintStart_toEndOf="@+id/body"
+        app:layout_constraintTop_toBottomOf="@+id/body"
+        app:layout_constraintVertical_bias="0.536"
+        app:srcCompat="@drawable/cap" />
+
+    <ImageView
+        android:id="@+id/blood_artery_upper_left2"
+        android:layout_width="27dp"
+        android:layout_height="46dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/body"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toEndOf="@+id/body"
+        app:layout_constraintTop_toBottomOf="@+id/body"
+        app:layout_constraintVertical_bias="0.532"
+        app:srcCompat="@drawable/left_artery" />
+
+    <ImageView
+        android:id="@+id/blood_location_upper_left"
+        android:layout_width="37dp"
+        android:layout_height="462dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/body"
         app:layout_constraintEnd_toStartOf="@+id/body"
@@ -42,6 +68,57 @@
         app:layout_constraintStart_toEndOf="@+id/body"
         app:layout_constraintTop_toBottomOf="@+id/body"
         app:layout_constraintVertical_bias="0.557"
-        app:srcCompat="@drawable/loc" />
+        app:srcCompat="@drawable/position" />
+
+    <ImageView
+        android:id="@+id/left_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blood_vein_upper_left"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/left_white" />
+
+    <ImageView
+        android:id="@+id/right_white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/right_white" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="adjustAlpha"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/blood_location_upper_left"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintStart_toEndOf="@+id/body"
+        app:layout_constraintTop_toBottomOf="@+id/blood_location_upper_left"
+        app:layout_constraintVertical_bias="0.769" />
+
+    <Button
+        android:id="@+id/left_upper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="LeftUpper"
+        android:text="左上肢"
+        app:layout_constraintBottom_toTopOf="@+id/body"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintStart_toEndOf="@+id/body"
+        app:layout_constraintTop_toBottomOf="@+id/body"
+        app:layout_constraintVertical_bias="0.685" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
