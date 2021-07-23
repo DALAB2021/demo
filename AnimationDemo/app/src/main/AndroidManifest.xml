@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawActivity"></activity>
+        <activity android:name=".DrawerPage"></activity>
+        <activity android:name=".DrawerActivity" />
+        <activity android:name=".DrawActivity" />
         <activity android:name=".VisualizationActivity" />
         <activity android:name=".TimerActivity" />
         <activity android:name=".MainActivity">

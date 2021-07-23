@@ -39,7 +39,11 @@ public class DrawActivity extends AppCompatActivity {
         init();
         Values.add(0.0f);
         String get = getIntent().getStringExtra("percent");
-        System.out.println("get:" + get);//可以收到
+        System.out.println("get:" + get);//可以收到,但是万一没有呢？
+        int upper=getIntent().getIntExtra("upper",200);//果然，是有默认值的，那么字符串的默认值是不是“”？_null
+        int lower=getIntent().getIntExtra("lower",600);
+        System.out.println("upper:" + upper);
+        System.out.println("lower:" + lower);
 
         textView = findViewById(R.id.textView2);
         textView.setText("ok");

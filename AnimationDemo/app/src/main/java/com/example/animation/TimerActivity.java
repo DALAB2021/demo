@@ -23,6 +23,9 @@ public class TimerActivity extends AppCompatActivity {
     long pauseTime;
     Timer timer1;
     TimerTask timerTask;
+    int interval=10;
+    int speed=10;//流速，一次interval的时间里面流过了多久。
+    int leashTime=5;//什么时候需要松
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,8 +73,18 @@ public class TimerActivity extends AppCompatActivity {
 
     }
 
+    public void changeSpeed(View view)//加速的过程应该是动态检测的...
+    {
+        speed=1000;
+    }
+    public void slowDownSpeed(View view)
+    {
+        speed=113;//到了15min之后的时间不那么快
+    }
     public void startClick(View view)
     {
+        //重新开始之后需要重新初始化speed
+        speed=10;
         timerTask=new TimerTask() {
             int cnt=0;
             @Override
@@ -84,7 +97,13 @@ public class TimerActivity extends AppCompatActivity {
 //                            //如果暂停了，那么cnt就不变化；
 //                            cnt++;
 //                        }
-                        cnt+=10;
+                        if(cnt>=leashTime*60*1000)//超过5min之后就减慢
+                        {
+                            speed=113;
+                        }
+
+                        cnt+=speed;
+                        //                        cnt+=10;
                         textView.setText(getStringTime(cnt));
                         //还要检查一下颜色
                         checkColor(cnt);
@@ -92,7 +111,9 @@ public class TimerActivity extends AppCompatActivity {
                 });
             }
         };
-        timer1.schedule(timerTask,0,10);//每0.01s调用一次
+//        timer1.schedule(timerTask,0,10);//每0.01s调用一次
+        //interval
+        timer1.schedule(timerTask,0,interval);//每0.01s调用一次
     }
 
     public void checkColor(int cnt)

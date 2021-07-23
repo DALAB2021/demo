@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("percent",percentText.getText().toString());
         startActivity(intent);
     }
+    public void Jump4(View view)//点击跳转页面
+    {
+        Intent intent =new Intent();
+        intent.setClass(MainActivity.this,DrawerPage.class);
+        startActivity(intent);
+    }
 
     public void startAnimationSet(View view)
     {
