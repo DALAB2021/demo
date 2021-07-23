@@ -48,18 +48,18 @@
             android:text="Button" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+<!--    <FrameLayout-->
+<!--        android:id="@+id/content_frame"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" >-->
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="TextView" />-->
 
-    </FrameLayout>
+<!--    </FrameLayout>-->
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
          languages and on the right side for right-to-left languages.
@@ -120,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="设置"
                 android:layout_weight="5"
+                android:textSize="18sp"
                 android:textColor="@android:color/background_light" />
         </LinearLayout>
 
@@ -147,14 +148,16 @@
                 android:textColorHint="@android:color/background_light"
                 android:hint="下限"
                 android:inputType="number"
-                android:textColor="@android:color/background_light" />
+                android:textColor="@android:color/background_light"
+                />
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="~"
+                android:textSize="20sp"
                 android:textColor="@android:color/background_light" />
 
             <EditText
@@ -165,7 +168,9 @@
                 android:hint="上限"
                 android:textColorHint="@android:color/background_light"
                 android:inputType="number"
-                android:textColor="@android:color/background_light" />
+                android:textColor="@android:color/background_light"
+
+                />
         </LinearLayout>
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
