@@ -14,6 +14,7 @@ public class VisualizationActivity extends AppCompatActivity {
     private ImageView wound;
     private ImageView position;
     private ImageView left_white;
+    private ImageView left_up_broken;
     private ImageView right_white;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class VisualizationActivity extends AppCompatActivity {
         //一开始应该大家都是隐藏起来的——这里就先手动设置，不显示地用代码设置
 //        findViewById(R.id.blood1).setVisibility(View.INVISIBLE);
 //        findViewById(R.id.location1).setVisibility(View.INVISIBLE);
+        left_up_broken=findViewById(R.id.left_up_broken);
+
     }
     public void LeftUpper(View view)//可能会有比较大的冗余，但是也不太方便参数化...或者我可以通过修改图片资源的方式来实现不同的流血量？
     {
@@ -122,5 +125,26 @@ public class VisualizationActivity extends AppCompatActivity {
     public void adjustAlpha(View view)
     {
         wound.setAlpha(0.5f);
+    }
+    public void blink(View view)
+    {
+        //左上肢坏死
+        left_up_broken.setVisibility(View.VISIBLE);
+        Animation merge=new AlphaAnimation(0.4f,0.9f);
+        merge.setDuration(1000);//1s
+        merge.setFillAfter(true);
+        merge.setFillBefore(true);
+        merge.setRepeatCount(-1);
+        merge.setRepeatMode(Animation.REVERSE);
+        left_up_broken.startAnimation(merge);
+
+
+
+//        Animation blur=new AlphaAnimation(1.0f,0.85f);
+//        blur.setDuration(interval);//1s
+//        blur.setFillAfter(true);
+//        blur.setFillBefore(true);
+//        blur.setRepeatCount(-1);//-1就是无穷次
+//        blur.setRepeatMode(Animation.REVERSE);
     }
 }

@@ -3,6 +3,7 @@ package com.example.animation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+//import android.gspephics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;

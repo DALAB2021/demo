@@ -84,6 +84,58 @@
         app:srcCompat="@drawable/left_white" />
 
     <ImageView
+        android:id="@+id/left_up_broken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blood_vein_upper_left"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/left_up_broken" />
+
+    <ImageView
+        android:id="@+id/right_up_broken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blood_vein_upper_left"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/right_up_broken" />
+
+    <ImageView
+        android:id="@+id/right_down_broken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blood_vein_upper_left"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/right_down_broken" />
+
+    <ImageView
+        android:id="@+id/left_down_broken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/blood_vein_upper_left"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/left_down_broken" />
+
+    <ImageView
         android:id="@+id/right_white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,5 +172,18 @@
         app:layout_constraintStart_toEndOf="@+id/body"
         app:layout_constraintTop_toBottomOf="@+id/body"
         app:layout_constraintVertical_bias="0.685" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="blink"
+        android:text="blink"
+        app:layout_constraintBottom_toTopOf="@+id/body"
+        app:layout_constraintEnd_toStartOf="@+id/body"
+        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintStart_toEndOf="@+id/body"
+        app:layout_constraintTop_toBottomOf="@+id/body"
+        app:layout_constraintVertical_bias="0.575" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

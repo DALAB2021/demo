@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         imageView.setScaleX(0.5f);
         imageView.setScaleY(0.5f);
         changeImage(100);//
-
         heartBeat(1000);
     }
 
